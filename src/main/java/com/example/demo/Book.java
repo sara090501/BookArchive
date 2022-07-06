@@ -15,7 +15,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     @NotBlank
     private String isbn;
     @NotBlank
@@ -25,6 +25,7 @@ public class Book {
     @ElementCollection
     @NotEmpty
     private Set<Author> authors;
+    @NotBlank
     private String publisher;
 
     //standard constructor
