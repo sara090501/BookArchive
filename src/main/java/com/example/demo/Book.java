@@ -10,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(name = "uk_book_isbn", columnNames = "isbn") })
 public class Book {
 
     @Id
