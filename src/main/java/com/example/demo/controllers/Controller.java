@@ -47,4 +47,14 @@ public class Controller {
     public void updateAuthor(@RequestBody Author author, @PathVariable Integer id) {
         authorService.addAuthor(author);
     }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/books/{id}")
+    public void deleteBook(@RequestBody Book book, @PathVariable Integer id) {
+        bookService.deleteBook(id);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/authors/{id}")
+    public void deleteAuthor(@RequestBody Author author, @PathVariable Integer id) {
+        authorService.deleteAuthor(id);
+    }
 }
