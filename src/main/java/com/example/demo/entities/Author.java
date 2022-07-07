@@ -1,14 +1,19 @@
-package com.example.demo;
+package com.example.demo.entities;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
-@Embeddable
+@Entity
 public class Author {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
 
     public Author() {
@@ -42,6 +47,10 @@ public class Author {
 
     private void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getFullName() {
+        return this.firstName + this.lastName;
     }
 
     @Override

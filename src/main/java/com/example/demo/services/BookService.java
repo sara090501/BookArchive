@@ -1,10 +1,14 @@
-package com.example.demo;
+package com.example.demo.services;
 
+import com.example.demo.entities.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.demo.repositories.BookRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class BookService {
@@ -14,9 +18,8 @@ public class BookService {
 
     public List<Book> getAllBooks() {
         //return this.books;
-        List books = new ArrayList<>();
-        bookRepository.findAll().forEach(books::add);
-        return books;
+        return StreamSupport.stream(bookRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
     }
 
     public Book getBook(Integer id) {
