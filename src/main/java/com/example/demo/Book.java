@@ -49,6 +49,10 @@ public class Book {
         this.authors.add(author);
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
