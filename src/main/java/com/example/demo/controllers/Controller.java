@@ -4,9 +4,7 @@ import com.example.demo.entities.Author;
 import com.example.demo.entities.Book;
 import com.example.demo.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.example.demo.services.BookService;
 
 import java.time.LocalDate;
@@ -30,13 +28,23 @@ public class Controller {
         return authorService.getAllAuthors();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/books")
-    public void addBook(Book book) {
+    @RequestMapping(method = RequestMethod.POST, value = "/books/add")
+    public void addBook(@RequestBody Book book) {
         bookService.addBook(book);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/authors")
-    public void addAuthor(Author author) {
+    @RequestMapping(method = RequestMethod.POST, value = "/authors/add")
+    public void addAuthor(@RequestBody Author author) {
+        authorService.addAuthor(author);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/book/{id}")
+    public void updateBook(@RequestBody Book book, @PathVariable Integer id) {
+        bookService.addBook(book);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/authors/{id}")
+    public void updateAuthor(@RequestBody Author author, @PathVariable Integer id) {
         authorService.addAuthor(author);
     }
 }

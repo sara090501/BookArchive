@@ -31,14 +31,6 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public void updateBook(Integer id, Book book) {
-        for (int i = 0; i < books.size(); i++) {
-            if (book.getId().equals(id)) {
-                books.set(i, book);
-            }
-        }
-    }
-
     public void deleteBook(Integer id) {
         books.removeIf(book -> book.getId().equals(id));
     }
