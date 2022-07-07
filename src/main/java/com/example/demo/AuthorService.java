@@ -1,12 +1,16 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AuthorService {
-    private ArrayList<Author> authors = new ArrayList<>();
+    @Autowired
+    private AuthorRepository authorRepository;
+    private List<Author> authors = new ArrayList<>();
 
     public Author getAuthor(Integer id) {
         return this.authors.stream().filter(author -> author.getId().equals(id)).findFirst().get();

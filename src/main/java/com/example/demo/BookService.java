@@ -1,14 +1,21 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class BookService {
-    private ArrayList<Book> books = new ArrayList<>();
+    @Autowired
+    private BookRepository bookRepository;
+    private List<Book> books = new ArrayList<>();
 
-    public ArrayList<Book> getAllBooks() {
+    public List<Book> getAllBooks() {
+        //return this.books;
+        List books = new ArrayList<>();
+        bookRepository.findAll().forEach(books::add);
         return books;
     }
 
@@ -17,7 +24,8 @@ public class BookService {
     }
 
     public void addBook(Book book) {
-        this.books.add(book);
+        //this.books.add(book);
+        bookRepository.save(book);
     }
 
     public void updateBook(Integer id, Book book) {
