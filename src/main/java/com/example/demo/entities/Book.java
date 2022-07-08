@@ -1,18 +1,12 @@
 package com.example.demo.entities;
 
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -22,7 +16,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer bookId;
     @NotBlank
     private String isbn;
     @NotBlank
@@ -32,7 +26,6 @@ public class Book {
 
     @NotBlank
     private String publisher;
-
-    @NotBlank
-    private LocalDate date;
+    @OneToMany(mappedBy = "book")
+    private List<Author> authors;
 }

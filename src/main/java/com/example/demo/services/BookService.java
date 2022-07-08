@@ -23,7 +23,7 @@ public class BookService {
     }
 
     public Book getBook(Integer id) {
-        return this.books.stream().filter(book -> book.getId().equals(id)).findFirst().get();
+        return this.books.stream().filter(book -> book.getBookId().equals(id)).findFirst().get();
     }
 
     public void addBook(Book book) {
@@ -32,6 +32,7 @@ public class BookService {
     }
 
     public void deleteBook(Integer id) {
-        books.removeIf(book -> book.getId().equals(id));
+        //books.removeIf(book -> book.getId().equals(id));
+        bookRepository.deleteById(id);
     }
 }

@@ -3,58 +3,59 @@ package com.example.demo.controllers;
 import com.example.demo.entities.Author;
 import com.example.demo.entities.Book;
 import com.example.demo.services.AuthorService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.services.BookService;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RequestMapping
 @RestController
+@RequiredArgsConstructor
 public class Controller {
+    private final BookService bookService;
+    private final AuthorService authorService;
 
-    @Autowired
-    private BookService bookService;
-    private AuthorService authorService;
-
-    @RequestMapping(method = RequestMethod.GET, value = "/books")
+    @GetMapping(value = "/books")
     public List<Book> getAllBooks() {
-        return bookService.getAllBooks();
+        return this.bookService.getAllBooks();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/authors")
+    @GetMapping(value = "/authors")
     public List<Author> getAllAuthors() {
-        return authorService.getAllAuthors();
+        return this.authorService.getAllAuthors();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/books/add")
+    @PostMapping(value = "/books/add")
     public void addBook(@RequestBody Book book) {
-        bookService.addBook(book);
+        this.bookService.addBook(book);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/authors/add")
+    @PostMapping(value = "/authors/add")
+    @Transactional
     public void addAuthor(@RequestBody Author author) {
-        authorService.addAuthor(author);
+        this.authorService.addAuthor(author);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/book/{id}")
+    @PutMapping(value = "/book/{id}")
     public void updateBook(@RequestBody Book book, @PathVariable Integer id) {
         bookService.addBook(book);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/authors/{id}")
+    @PutMapping(value = "/authors/{id}")
     public void updateAuthor(@RequestBody Author author, @PathVariable Integer id) {
-        authorService.addAuthor(author);
+        this.authorService.addAuthor(author);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/books/{id}")
-    public void deleteBook(@RequestBody Book book, @PathVariable Integer id) {
-        bookService.deleteBook(id);
+    @DeleteMapping(value = "/books/{id}")
+    public void deleteBook(@PathVariable Integer id) {
+        this.bookService.deleteBook(id);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/authors/{id}")
-    public void deleteAuthor(@RequestBody Author author, @PathVariable Integer id) {
-        authorService.deleteAuthor(id);
+    @DeleteMapping(value = "/authors/{id}")
+    public void deleteAuthor(@PathVariable Integer id) {
+        this.authorService.deleteAuthor(id);
     }
 }

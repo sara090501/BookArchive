@@ -21,15 +21,15 @@ public class AuthorService {
     }
 
     public Author getAuthor(Integer id) {
-        return this.authors.stream().filter(author -> author.getId().equals(id)).findFirst().get();
+        return this.authors.stream().filter(author -> author.getAuthorId().equals(id)).findFirst().get();
     }
 
     public String getFirstName(Integer id) {
-        return this.authors.stream().filter(author -> author.getId().equals(id)).findFirst().get().getFirstName();
+        return this.authors.stream().filter(author -> author.getAuthorId().equals(id)).findFirst().get().getFirstName();
     }
 
     public String getLastName(Integer id) {
-        return this.authors.stream().filter(author -> author.getId().equals(id)).findFirst().get().getLastName();
+        return this.authors.stream().filter(author -> author.getAuthorId().equals(id)).findFirst().get().getLastName();
     }
 
     public void addAuthor(Author author) {
@@ -38,6 +38,7 @@ public class AuthorService {
     }
 
     public void deleteAuthor(Integer id) {
-        this.authors.removeIf(author -> author.getId().equals(id));
+        //this.authors.removeIf(author -> author.getAuthorId().equals(id));
+        this.authorRepository.deleteById(id);
     }
 }
