@@ -26,6 +26,13 @@ public class BookService {
     }
 
     public void addBook(Book book) {
+        Book newBook = new Book();
+        newBook.setBookId(book.getBookId());
+        newBook.setDescription(book.getDescription());
+        newBook.setIsbn(book.getIsbn());
+        newBook.setPublisher(book.getPublisher());
+        newBook.setTitle(book.getTitle());
+
         bookRepository.save(book);
     }
 

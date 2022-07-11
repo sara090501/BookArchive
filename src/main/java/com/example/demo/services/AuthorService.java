@@ -33,7 +33,11 @@ public class AuthorService {
     }
 
     public void addAuthor(Author author) {
-        this.authorRepository.save(author);
+        Author newAuthor = new Author();
+        newAuthor.setAuthorId(author.getAuthorId());
+        newAuthor.setFirstName(author.getFirstName());
+        newAuthor.setLastName(author.getLastName());
+        this.authorRepository.save(newAuthor);
     }
 
     public void deleteAuthor(Integer id) {

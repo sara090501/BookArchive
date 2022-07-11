@@ -3,6 +3,7 @@ package com.example.demo.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.example.demo.entities.Author;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -29,6 +30,8 @@ public class Book {
     private String publisher;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "author_book")
-    private List<Author> authorList = new ArrayList<>();
+    @JoinTable(name = "author_book",
+               joinColumns = @JoinColumn(name = "book_id"),
+               inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private List<Author> authors = new ArrayList<>();
 }
