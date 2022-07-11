@@ -10,10 +10,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class System {
+public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer column;
+    private Integer row;
 
     @ManyToOne
     @JoinColumn(name = "author_id")

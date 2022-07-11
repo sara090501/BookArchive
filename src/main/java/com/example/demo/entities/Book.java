@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -26,6 +27,8 @@ public class Book {
 
     @NotBlank
     private String publisher;
-    @OneToMany(mappedBy = "book")
-    private List<System> system;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "author_book")
+    private List<Author> authorList = new ArrayList<>();
 }
