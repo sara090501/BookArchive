@@ -27,5 +27,5 @@ public class Book {
     @NotBlank
     private String publisher;
     @OneToMany(mappedBy = "book")
-    private List<Author> authors;
+    private List<System> system;
 }

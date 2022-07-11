@@ -21,5 +21,5 @@ public class Author {
     @NotBlank
     private String lastName;
     @OneToMany(mappedBy = "author")
-    private List<Book> books;
+    private List<System> system;
 }

@@ -1,19 +1,24 @@
 package com.example.demo.entities;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class System {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer column;
+
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
+
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
